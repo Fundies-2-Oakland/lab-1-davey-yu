@@ -1,0 +1,57 @@
+import java.io.Math;
+
+public class Vector3D(double x, double y, double z){
+    public double getX(){
+        return x;
+    }
+    public double getY(){
+        return y;
+    }
+    public double getZ(){
+        return z;
+    }
+
+    override String toString(){
+        return "(" + x + "," + y + "," + z + ")";
+    }
+
+    public static void main(String[] args){
+        System.out.println("hi");
+    }
+
+    public double getMagnitude(){
+        return Math.sqrt(Math.pow(x,2) + Math.pow(y,2) + Math.pow(z,2));
+    }
+
+    public Vector3D normalize(double x, double y, double z, double magnitude){
+        if(magnitude == 0){
+            throw IllegalStateException;
+        }
+        return Vector3D(x/magnitude, y/magnitude, z/magnitude);
+    }
+
+    public Vector3D add(Vector3D v){
+        return Vector3D(x+v.getX(), y+ v.getY(), z + v.getZ());
+    }
+
+    public Vector3D multiply(int constant){
+        return Vector3D(constant * x, constant * y, constant * z);
+    }
+
+    public double dotProduct(Vector3D v){
+        return x * v.getX() + y * v.getY() + z * v.getZ();
+    }
+
+    public double angleBetween(Vector3D v){
+        if(getMagnitude() == 0 || v.getMagnitude() == 0){
+            throw IllegalStateException;
+        }
+        return dotProduct(v)/(getMagnitude() * v.getMagnitude());
+    }
+
+    public Vector3D crossProduct(Vector3D v){
+        return Vector3D((y * v.getZ()) - (z * v.getY()), (z * v.getX()) - (x * v.getZ()), (x * v.getY()) - (y * v.getX()))
+    }
+
+}
+
